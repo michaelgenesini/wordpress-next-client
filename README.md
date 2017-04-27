@@ -1,10 +1,11 @@
 # ⚡ puraz-wordpress
 
 ### References:
-[apollo-fullstack-starter-kit](https://github.com/sysgears/apollo-fullstack-starter-kit)
-[react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example)
-[universal-react-apollo-example](https://github.com/WeLikeGraphQL/universal-react-apollo-example)
-[wordpress-graphql-api-example](https://github.com/WeLikeGraphQL/wordpress-graphql-api-example)
+
+- [apollo-fullstack-starter-kit](https://github.com/sysgears/apollo-fullstack-starter-kit)
+- [react-redux-universal-hot-example](https://github.com/erikras/react-redux-universal-hot-example)
+- [universal-react-apollo-example](https://github.com/WeLikeGraphQL/universal-react-apollo-example)
+- [wordpress-graphql-api-example](https://github.com/WeLikeGraphQL/wordpress-graphql-api-example)
 
 ## Checklist 1.0
 - [ ] Webpack2 for bundling
