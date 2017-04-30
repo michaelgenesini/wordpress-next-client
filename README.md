@@ -11,6 +11,7 @@ yarn
 ```
 npm run dev
 ```
+[http://localhost:3000](http://localhost:3000)
 
 ### Build
 ```
@@ -19,5 +20,5 @@ npm run build
 
 ### Start
 ```
-npm run start
+PORT=9000 npm start
 ```

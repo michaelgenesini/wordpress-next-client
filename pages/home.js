@@ -1,6 +1,10 @@
 import 'isomorphic-fetch'
+import Link from 'next/link'
 
 const Page = ({ title, content }) => <div>
+	<Link href="/">
+		<a>Index Page</a>
+	</Link>
 	<h1>{title}</h1>
 	<div dangerouslySetInnerHTML={{__html: content}}></div>
 </div>
