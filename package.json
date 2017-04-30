@@ -9,12 +9,14 @@
   "author": "Michael Genesini <michael.genesini@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "isomorphic-fetch": "^2.2.1",
     "next": "^2.3.0-alpha1",
     "next-routes": "^1.0.24",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "styled-components": "^1.4.5"
   },
-  "script": {
+  "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start"
