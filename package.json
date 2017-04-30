@@ -1,5 +1,5 @@
 {
-  "name": "puraz-wordpress",
+  "name": "wordpress-next-client",
   "version": "0.0.1",
   "main": "index.js",
   "repository": {
@@ -7,5 +7,14 @@
     "type": "git"
   },
   "author": "Michael Genesini <michael.genesini@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "next": "^2.3.0-alpha1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {},
+  "script": {
+    "dev": "webpack --config ./webpack/webpack.config.js"
+  }
 }
