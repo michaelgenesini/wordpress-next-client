@@ -9,7 +9,9 @@
   "author": "Michael Genesini <michael.genesini@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.15.2",
     "isomorphic-fetch": "^2.2.1",
+    "lru-cache": "^4.0.2",
     "next": "^2.3.0-alpha1",
     "next-routes": "^1.0.24",
     "react": "^15.5.4",
@@ -19,6 +21,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start -p $PORT"
+    "start:next": "next start -p $PORT",
+		"start": "NODE_ENV=production node server.js"
   }
 }
