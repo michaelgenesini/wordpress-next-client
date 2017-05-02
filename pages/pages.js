@@ -4,6 +4,7 @@ import Link from 'next/link';
 import api from '../libs/api';
 
 import Page from '../components/Page';
+import Header from '../components/Header';
 
 class Pages extends Component {
 	static async getInitialProps(context) {
