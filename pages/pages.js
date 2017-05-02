@@ -28,15 +28,13 @@ class Pages extends Component {
 				</ul>
 
 				<ul>
-				{ this.props.pages.map(page => <li key={page.id}>
-					<Link href={`/page?id=${page.id}`}><a>{ page.title.rendered }</a></Link>
-				</li> )}
+				{ this.props.pages.map(page => <li key={page.id}><Link href={`/page?id=${page.id}`}><a>{ page.title.rendered }</a></Link></li> ) }
 				</ul>
 
 			</Page>
-		);
+		)
 	}
 }
 
 
-export default Pages;
+export default Pages

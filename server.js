@@ -7,27 +7,48 @@ require('isomorphic-fetch')
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dir: '.', dev })
 const handle = app.getRequestHandler()
-const pageTree = {}
+const tree = {}
 
 const ssrCache = new LRUCache({
   max: 100,
   maxAge: 1000 * 60 * 60,
 })
 
-function generateStaticTree() {
+function generatePages() {
   const api = 'http://wordpress.michaelgenesini.com/wp-json/wp/v2/pages'
   fetch(api)
     .then(function (response) { return response.json() })
     .then(function(data) {
       for (var i = 0; i < data.length; i++) {
-        pageTree[data[i].slug] = data[i]
+        tree[data[i].slug] = data[i]
+        tree[data[i].slug]['generatedType'] = 'page'
       }
       console.info('GENERATED TREE PAGES')
     })
 }
 
+function generatePosts() {
+  const api = 'http://wordpress.michaelgenesini.com/wp-json/wp/v2/posts'
+  fetch(api)
+    .then(function (response) { return response.json() })
+    .then(function(data) {
+      for (var i = 0; i < data.length; i++) {
+        tree[data[i].slug] = data[i]
+        tree[data[i].slug]['generatedType'] = 'post'
+      }
+      console.info('GENERATED TREE POSTS')
+    })
+}
+
+function generateStaticTree() {
+  generatePages()
+  generatePosts()
+}
+// FIRST CALL
+generateStaticTree()
+
 function getElementBySlug(slug) {
-  return pageTree[slug] ? pageTree[slug] : null
+  return tree[slug] ? tree[slug] : null
 }
 
 function renderAndCache(req, res, pagePath, queryParams) {
@@ -59,22 +80,16 @@ app.prepare()
   })
 
   server.get('/:slug/', (req, res) => {
-    const page = getElementBySlug(req.params.slug)
-    if (!page) {
+    const generated = getElementBySlug(req.params.slug)
+    if (!generated) {
       res.statusCode = 404
       res.end('Not found')
       return
     }
-    req.params.slug = 'page'
-    req.params.id = page.id
-    return renderAndCache(req, res, '/page', Object.assign(
-      req.query,
-      req.params
-    ))
-  })
-
-  server.get('/p/:id/:slug', (req, res) => {
-    return renderAndCache(req, res, '/post', Object.assign(
+    req.params.slug = generated.generatedType
+    req.params.id = generated.id
+    const type = '/'+generated.generatedType
+    return renderAndCache(req, res, type, Object.assign(
       req.query,
       req.params
     ))

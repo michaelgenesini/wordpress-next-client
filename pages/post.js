@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Head from 'next/head';
-import Link from 'next/link';
-import api from '../libs/api';
+import React, { Component } from 'react'
+import Head from 'next/head'
+import Link from 'next/link'
+import api from '../libs/api'
 
-import Page from '../components/Page';
-import Post from '../components/Post';
+import Page from '../components/Page'
+import Post from '../components/Post'
 
 
 class PostPage extends Component {
@@ -15,7 +15,7 @@ class PostPage extends Component {
     ] = await Promise.all([
       api.site.getInfo(),
       api.posts.getSingle(context.query.id)
-    ]);
+    ])
 
     return {
       site,
@@ -24,7 +24,6 @@ class PostPage extends Component {
   }
 
   render() {
-		console.log(this.props);
     return (
       <Page name={this.props.site.name} title={this.props.site.title}>
         <ul>
@@ -36,9 +35,9 @@ class PostPage extends Component {
 				<Post {...this.props.post} full />
 
       </Page>
-    );
+    )
   }
 }
 
 
-export default PostPage;
+export default PostPage

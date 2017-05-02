@@ -20,7 +20,7 @@ class SinglePage extends Component {
 
 	render() {
 		return (
-			<Page name={this.props.page.name} title={this.props.page.title.rendered }>
+			<Page name={ this.props.page.name } title={ this.props.page.title.rendered }>
 				<ul>
 					<li><Link href="/"><a>Home</a></Link></li>
 					<li><Link href="/pages"><a>Pages</a></Link></li>

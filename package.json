@@ -15,6 +15,7 @@
     "lru-cache": "^4.0.2",
     "next": "^2.3.0-alpha1",
     "next-routes": "^1.0.24",
+    "nprogress": "^0.2.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "styled-components": "^1.4.5"
