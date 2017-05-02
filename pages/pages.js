@@ -5,35 +5,38 @@ import api from '../libs/api';
 
 import Page from '../components/Page';
 
-class SinglePage extends Component {
+class Pages extends Component {
 	static async getInitialProps(context) {
 		const [
-			page
+			pages
 		] = await Promise.all([
-			api.pages.getSingle(context.query.id)
+			api.pages.getList()
 		])
 
 		return {
-			page
+			pages
 		}
 	}
 
 	render() {
 		return (
-			<Page name={this.props.page.name} title={this.props.page.title.rendered }>
+			<Page name="Pages" title="Titles">
 				<ul>
 					<li><Link href="/"><a>Home</a></Link></li>
 					<li><Link href="/pages"><a>Pages</a></Link></li>
 					<li><Link href="/posts"><a>Posts</a></Link></li>
 				</ul>
 
-				<h1>{ this.props.page.title.rendered }</h1>
-				<div dangerouslySetInnerHTML={{__html: this.props.page.content.rendered }}></div>
+				<ul>
+				{ this.props.pages.map(page => <li key={page.id}>
+					<Link href={`/page?id=${page.id}`}><a>{ page.title.rendered }</a></Link>
+				</li> )}
+				</ul>
 
 			</Page>
-		)
+		);
 	}
 }
 
 
-export default SinglePage;
+export default Pages;

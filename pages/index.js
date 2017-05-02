@@ -3,32 +3,15 @@ import API from '../libs/api'
 import Link from 'next/link'
 
 export default class extends React.Component {
-  static async getInitialProps ({ req }) {
-		// const [
-		// 	site,
-		// 	pages,
-		// 	page,
-		// 	posts,
-		// 	post
-		// ] = await Promise.all([
-    //   API.site.getInfo(),
-		// 	API.pages.getList(),
-		// 	API.pages.getSingle(3),
-		// 	API.posts.getList(),
-		// 	API.papostsges.getSingle(),
-    // ]);
-		// console.log('TEST: ', site,pages,page,posts,post);
-    return req
-      ? { userAgent: req.headers['user-agent'] }
-      : { userAgent: navigator.userAgent }
-  }
   render () {
     return <div>
-      Hello World {this.props.userAgent}
-			<br/>
-			<Link href="/home">
-	      <a>Home Page</a>
-	    </Link>
+      <ul>
+        <li><Link href="/"><a>Home</a></Link></li>
+        <li><Link href="/pages"><a>Pages</a></Link></li>
+        <li><Link href="/posts"><a>Posts</a></Link></li>
+      </ul>
+      <br/>
+      <h1>Hello Next Wordpress Client</h1>
     </div>
   }
 }
