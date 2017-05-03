@@ -1,36 +1,36 @@
 import 'isomorphic-fetch'
 
-const baseUrl = `http://wordpress.michaelgenesini.com/wp-json/wp/v2`
+const wpBaseUrl = `http://wordpress.michaelgenesini.com/wp-json/wp/v2`
 
 const api = {
-  site: {
+  wpSite: {
     async getInfo() {
-      const response = await fetch(baseUrl)
+      const response = await fetch(wpBaseUrl)
       const data = await response.json()
       // return data
-			return { title: 'TEST', name: 'NAME'}
+      return { title: 'TEST', name: 'NAME'}
     }
   },
-	pages: {
+  wpPages: {
     async getList() {
-      const response = await fetch(`${baseUrl}/pages`)
+      const response = await fetch(`${wpBaseUrl}/pages`)
       const data = await response.json()
       return data
     },
     async getSingle(id) {
-      const response = await fetch(`${baseUrl}/pages/${id}`)
+      const response = await fetch(`${wpBaseUrl}/pages/${id}`)
       const data = await response.json()
       return data
     }
   },
-  posts: {
+  wpPosts: {
     async getList() {
-      const response = await fetch(`${baseUrl}/posts`)
+      const response = await fetch(`${wpBaseUrl}/posts`)
       const data = await response.json()
       return data
     },
     async getSingle(id) {
-      const response = await fetch(`${baseUrl}/posts/${id}`)
+      const response = await fetch(`${wpBaseUrl}/posts/${id}`)
       const data = await response.json()
       return data
     }

@@ -3,8 +3,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import api from '../libs/api'
 
-import Page from '../components/Page'
-import Post from '../components/Post'
+import Page from '../commons/Page'
+import WPPost from '../components/wp-Post'
 
 
 class PostPage extends Component {
@@ -13,8 +13,8 @@ class PostPage extends Component {
       site,
       post,
     ] = await Promise.all([
-      api.site.getInfo(),
-      api.posts.getSingle(context.query.id)
+      api.wpSite.getInfo(),
+      api.wpPosts.getSingle(context.query.id)
     ])
 
     return {
@@ -32,7 +32,7 @@ class PostPage extends Component {
 					<li><Link href="/posts"><a>Posts</a></Link></li>
 				</ul>
 
-				<Post {...this.props.post} full />
+				<WPPost {...this.props.post} full />
 
       </Page>
     )

@@ -1,7 +1,7 @@
-import React from 'react';
-import Link from 'next/link';
+import React from 'react'
+import Link from 'next/link'
 
-const Post = (props) => (
+const WPPost = (props) => (
 	<article>
     <header>
       <h2
@@ -30,4 +30,4 @@ const Post = (props) => (
 )
 
 
-export default Post
+export default WPPost

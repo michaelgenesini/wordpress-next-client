@@ -3,23 +3,23 @@ import Head from 'next/head'
 import Link from 'next/link'
 import api from '../libs/api'
 
-import Page from '../components/Page'
-import Post from '../components/Post'
+import Page from '../commons/Page'
+import WPPost from '../components/wp-Post'
 
 
 class PostsPage extends Component {
   static async getInitialProps(context) {
     const [
       site,
-      posts,
+      posts
     ] = await Promise.all([
-      api.site.getInfo(),
-      api.posts.getList(),
+      api.wpSite.getInfo(),
+      api.wpPosts.getList()
     ])
 
     return {
       site,
-      posts,
+      posts
     }
   }
 
@@ -32,7 +32,7 @@ class PostsPage extends Component {
 					<li><Link href="/posts"><a>Posts</a></Link></li>
 				</ul>
 
-				{ this.props.posts.map(post => <Post key={post.id} {...post} /> )}
+				{ this.props.posts.map(post => <WPPost key={post.id} {...post} /> ) }
 
       </Page>
     )

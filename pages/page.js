@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import api from '../libs/api';
 
-import Page from '../components/Page';
-import Header from '../components/Header';
+import Page from '../commons/Page'
+import WPPage from '../components/wp-Page'
 
 class SinglePage extends Component {
 	static async getInitialProps(context) {
 		const [
 			page
 		] = await Promise.all([
-			api.pages.getSingle(context.query.id)
+			api.wpPages.getSingle(context.query.id)
 		])
 
 		return {
@@ -27,8 +27,7 @@ class SinglePage extends Component {
 					<li><Link href="/posts"><a>Posts</a></Link></li>
 				</ul>
 
-				<h1>{ this.props.page.title.rendered }</h1>
-				<div dangerouslySetInnerHTML={{__html: this.props.page.content.rendered }}></div>
+				<WPPage {...this.props.page} full />
 
 			</Page>
 		)
