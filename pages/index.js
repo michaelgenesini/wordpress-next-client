@@ -10,6 +10,7 @@ export default class extends React.Component {
         <li><Link href="/"><a>Home</a></Link></li>
         <li><Link href="/pages"><a>Pages</a></Link></li>
         <li><Link href="/posts"><a>Posts</a></Link></li>
+        <li><Link href="/me"><a>Author</a></Link></li>
       </ul>
       <br/>
       <h1>Hello Next Wordpress Client</h1>

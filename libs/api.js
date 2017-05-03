@@ -1,6 +1,7 @@
 import 'isomorphic-fetch'
 
 const wpBaseUrl = `http://wordpress.michaelgenesini.com/wp-json/wp/v2`
+const githubBaseUrl = `https://api.github.com`
 
 const api = {
   wpSite: {
@@ -31,6 +32,13 @@ const api = {
     },
     async getSingle(id) {
       const response = await fetch(`${wpBaseUrl}/posts/${id}`)
+      const data = await response.json()
+      return data
+    }
+  },
+  githubUsers: {
+    async getSingle(id) {
+      const response = await fetch(`${githubBaseUrl}/users/${id}`)
       const data = await response.json()
       return data
     }

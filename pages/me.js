@@ -1,27 +1,26 @@
-import React, { Component } from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
-import api from '../libs/api'
+import React, { Component } from 'react';
+import Link from 'next/link';
+import api from '../libs/api';
 
 import Page from '../commons/Page'
-import WPPage from '../components/wp-Page'
+import GithubUser from '../components/github-User'
 
-class Pages extends Component {
+class SinglePage extends Component {
 	static async getInitialProps(context) {
 		const [
-			pages
+			user
 		] = await Promise.all([
-			api.wpPages.getList()
+			api.githubUsers.getSingle('michaelgenesini')
 		])
 
 		return {
-			pages
+			user
 		}
 	}
 
 	render() {
 		return (
-			<Page name="Pages" title="Titles">
+			<Page>
 				<ul>
 					<li><Link href="/"><a>Home</a></Link></li>
 					<li><Link href="/pages"><a>Pages</a></Link></li>
@@ -29,7 +28,7 @@ class Pages extends Component {
 					<li><Link href="/me"><a>Author</a></Link></li>
 				</ul>
 
-				{ this.props.pages.map(page => <WPPage key={page.id} {...page} /> ) }
+				<GithubUser {...this.props.user} full />
 
 			</Page>
 		)
@@ -37,4 +36,4 @@ class Pages extends Component {
 }
 
 
-export default Pages
+export default SinglePage;
