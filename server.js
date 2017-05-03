@@ -14,7 +14,7 @@ const ssrCache = new LRUCache({
   maxAge: 1000 * 60 * 60,
 })
 
-function generatePages() {
+function generateWpPages() {
   const api = 'http://wordpress.michaelgenesini.com/wp-json/wp/v2/pages'
   fetch(api)
     .then(function (response) { return response.json() })
@@ -27,7 +27,7 @@ function generatePages() {
     })
 }
 
-function generatePosts() {
+function generateWpPosts() {
   const api = 'http://wordpress.michaelgenesini.com/wp-json/wp/v2/posts'
   fetch(api)
     .then(function (response) { return response.json() })
@@ -41,8 +41,8 @@ function generatePosts() {
 }
 
 function generateStaticTree() {
-  generatePages()
-  generatePosts()
+  generateWpPages()
+  generateWpPosts()
 }
 // FIRST CALL
 generateStaticTree()
@@ -82,9 +82,7 @@ app.prepare()
   server.get('/:slug/', (req, res) => {
     const generated = getElementBySlug(req.params.slug)
     if (!generated) {
-      res.statusCode = 404
-      res.end('Not found')
-      return
+      return handle(req, res)
     }
     req.params.slug = generated.generatedType
     req.params.id = generated.id

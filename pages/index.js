@@ -5,7 +5,7 @@ import Page from '../commons/Page'
 
 export default class extends React.Component {
   render () {
-    return <Page name="HOME" title="TITLE">
+    return <Page>
       <ul>
         <li><Link href="/"><a>Home</a></Link></li>
         <li><Link href="/pages"><a>Pages</a></Link></li>
