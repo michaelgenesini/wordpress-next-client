@@ -3,7 +3,7 @@ import Link from 'next/link';
 import api from '../libs/api';
 
 import Page from '../commons/Page'
-import GithubUser from '../components/github-User'
+import GithubUser from '../components/GithubUser'
 
 class SinglePage extends Component {
 	static async getInitialProps(context) {
