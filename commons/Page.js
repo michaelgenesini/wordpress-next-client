@@ -7,6 +7,17 @@ Router.onRouteChangeStart = (url) => NProgress.start()
 Router.onRouteChangeComplete = () => NProgress.done()
 Router.onRouteChangeError = () => NProgress.done()
 
+const style = `
+	body {
+		background: #fff;
+		font: 16px menlo;
+		color: #4c4c4c;
+	}
+	a {
+		color: #e54b4b
+	}
+`
+
 const Page = (props) => {
   return (
     <section className="container">
@@ -16,16 +27,7 @@ const Page = (props) => {
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" />
-          <style>{`
-            body {
-              background: #fff;
-              font: 16px menlo;
-              color: #4c4c4c;
-            }
-            a {
-              color: #e54b4b
-            }
-          `}</style>
+          <style>{style}</style>
       </Head>
 
 			{props.children}
