@@ -17,7 +17,7 @@ const WPPost = (props) => (
     />
     { props.full || (
       <div>
-        <Link prefetch as={props.slug} href={`/post?id=${props.id}`} >
+        <Link prefetch as={`/post/${props.slug}`} href={`/post?id=${props.id}`} >
 					<a
 						dangerouslySetInnerHTML={{
 		          __html: props.title.rendered
