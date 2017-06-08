@@ -17,7 +17,7 @@ const ssrCache = new LRUCache({
 
 function generateStaticTree() {
   wpTree.generateWpPages(tree)
-  // wpTree.generateWpPosts(tree)
+  wpTree.generateWpPosts(tree)
 }
 // FIRST CALL
 generateStaticTree()
@@ -54,15 +54,15 @@ app.prepare()
     return generateStaticTree()
   })
 
-  server.get('/:slug/', (req, res) => {
-    const generated = getElementBySlug(req.params.slug)
+  server.get('/:slug/:single?', (req, res) => {
+    const generated = getElementBySlug(req.params.single ? req.params.single : req.params.slug)
+    console.log('generated: ', generated)
     if (!generated) {
       return handle(req, res)
     }
     req.params.slug = generated.generatedType
     req.params.id = generated.id
     const type = '/'+generated.generatedType
-    console.log('generated', generated)
     return renderAndCache(req, res, type, Object.assign(
       req.query,
       req.params
