@@ -3,7 +3,7 @@ require('isomorphic-fetch')
 module.exports = {
 
     generateWpPages: function (tree) {
-        const api = '//wordpress.michaelgenesini.com/wp-json/wp/v2/pages'
+        const api = 'http://wordpress.michaelgenesini.com/wp-json/wp/v2/pages'
         fetch(api)
             .then(function (response) { return response.json() })
             .then(function(data) {
@@ -17,7 +17,7 @@ module.exports = {
     },
 
     generateWpPosts: function (tree) {
-        const api = '//wordpress.michaelgenesini.com/wp-json/wp/v2/posts'
+        const api = 'http://wordpress.michaelgenesini.com/wp-json/wp/v2/posts'
         fetch(api)
             .then(function (response) { return response.json() })
             .then(function(data) {
