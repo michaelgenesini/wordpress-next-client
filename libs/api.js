@@ -4,7 +4,6 @@ const wpBaseUrl = `//wordpress.michaelgenesini.com/wp-json`
 const wpAPI = `/wp/v2`
 const acfAPI = `/acf/v3`
 const githubBaseUrl = `https://api.github.com`
-const PUBLIC = `P0OqPFF2DBrq`
 
 const api = {
   wpSite: {
