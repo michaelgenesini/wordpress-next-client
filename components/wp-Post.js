@@ -12,7 +12,7 @@ const WPPost = (props) => (
     </header>
     <div
       dangerouslySetInnerHTML={{
-        __html: props.full ? props.content.rendered : props.excerpt.rendered
+        __html: props.full ? props.content.rendered.replace('https://wordpress.michaelgenesini.com/', '/') : props.excerpt.rendered.replace('https://wordpress.michaelgenesini.com/', '/')
       }}
     />
     { props.full || (
