@@ -1,6 +1,6 @@
 import 'isomorphic-fetch'
 
-const wpBaseUrl = `http://wordpress.michaelgenesini.com/wp-json`
+const wpBaseUrl = `//wordpress.michaelgenesini.com/wp-json`
 const wpAPI = `/wp/v2`
 const acfAPI = `/acf/v3`
 const githubBaseUrl = `https://api.github.com`
