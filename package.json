@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "index.js",
   "repository": {
-    "url": "git@github.com:michaelgenesini/puraz-wordpress.git",
+    "url": "git@github.com:michaelgenesini/wordpress-next-client.git",
     "type": "git"
   },
   "author": "Michael Genesini <michael.genesini@gmail.com>",
