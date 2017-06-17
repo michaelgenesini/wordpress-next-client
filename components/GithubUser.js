@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-const WPPage = (props) => {
+const GithubUser = (props) => {
   return (
     <article>
       <header>
@@ -14,4 +14,4 @@ const WPPage = (props) => {
   )
 }
 
-export default WPPage
+export default GithubUser
