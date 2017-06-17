@@ -1,8 +1,8 @@
 const express = require('express')
 const next = require('next')
 const LRUCache = require('lru-cache')
+const wpTree = require('./wpTree')
 require('es6-promise').polyfill()
-require('isomorphic-fetch')
 
 const port = process.env.PORT ? process.env.PORT : 3000;
 const dev = process.env.NODE_ENV !== 'production'
@@ -12,38 +12,12 @@ const tree = {}
 
 const ssrCache = new LRUCache({
   max: 100,
-  maxAge: 1000 * 60 * 60,
+  maxAge: 1000 * 60 * 60
 })
 
-function generateWpPages() {
-  const api = 'http://wordpress.michaelgenesini.com/wp-json/wp/v2/pages'
-  fetch(api)
-    .then(function (response) { return response.json() })
-    .then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        tree[data[i].slug] = data[i]
-        tree[data[i].slug]['generatedType'] = 'page'
-      }
-      console.info('GENERATED TREE PAGES')
-    })
-}
-
-function generateWpPosts() {
-  const api = 'http://wordpress.michaelgenesini.com/wp-json/wp/v2/posts'
-  fetch(api)
-    .then(function (response) { return response.json() })
-    .then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        tree[data[i].slug] = data[i]
-        tree[data[i].slug]['generatedType'] = 'post'
-      }
-      console.info('GENERATED TREE POSTS')
-    })
-}
-
 function generateStaticTree() {
-  generateWpPages()
-  generateWpPosts()
+  wpTree.generateWpPages(tree)
+  wpTree.generateWpPosts(tree)
 }
 // FIRST CALL
 generateStaticTree()
@@ -80,19 +54,20 @@ app.prepare()
       return generateStaticTree()
     })
 
-    server.get('/:slug/', (req, res) => {
-      const generated = getElementBySlug(req.params.slug)
-      if (!generated) {
-        return handle(req, res)
-      }
-      req.params.slug = generated.generatedType
-      req.params.id = generated.id
-      const type = '/' + generated.generatedType
-      return renderAndCache(req, res, type, Object.assign(
-        req.query,
-        req.params
-      ))
-    })
+  server.get('/:slug/:single?', (req, res) => {
+    const generated = getElementBySlug(req.params.single ? req.params.single : req.params.slug)
+    console.log('generated: ', generated)
+    if (!generated) {
+      return handle(req, res)
+    }
+    req.params.slug = generated.generatedType
+    req.params.id = generated.id
+    const type = '/'+generated.generatedType
+    return renderAndCache(req, res, type, Object.assign(
+      req.query,
+      req.params
+    ))
+  })
 
     server.get('/', (req, res) => {
       return renderAndCache(req, res, '/', req.query)

@@ -12,12 +12,12 @@ const WPPost = (props) => (
     </header>
     <div
       dangerouslySetInnerHTML={{
-        __html: props.full ? props.content.rendered : props.excerpt.rendered
+        __html: props.full ? props.content.rendered.replace('https://wordpress.michaelgenesini.com/', '/') : props.excerpt.rendered.replace('https://wordpress.michaelgenesini.com/', '/')
       }}
     />
     { props.full || (
       <div>
-        <Link prefetch as={props.slug} href={`/post?id=${props.id}`} >
+        <Link prefetch as={`/post/${props.slug}`} href={`/post?id=${props.id}`} >
 					<a
 						dangerouslySetInnerHTML={{
 		          __html: props.title.rendered

@@ -1,8 +1,9 @@
 import 'isomorphic-fetch'
 
-const wpBaseUrl = `http://wordpress.michaelgenesini.com/wp-json/wp/v2`
+const wpBaseUrl = `//wordpress.michaelgenesini.com/wp-json`
+const wpAPI = `/wp/v2`
+const acfAPI = `/acf/v3`
 const githubBaseUrl = `https://api.github.com`
-const PUBLIC = `P0OqPFF2DBrq`
 
 const api = {
   wpSite: {
@@ -19,24 +20,24 @@ const api = {
   },
   wpPages: {
     async getList() {
-      const response = await fetch(`${wpBaseUrl}/pages`)
+      const response = await fetch(`${wpBaseUrl + wpAPI }/pages`)
       const data = await response.json()
       return data
     },
     async getSingle(id) {
-      const response = await fetch(`${wpBaseUrl}/pages/${id}`)
+      const response = await fetch(`${wpBaseUrl + wpAPI }/pages/${id}`)
       const data = await response.json()
       return data
     }
   },
   wpPosts: {
     async getList() {
-      const response = await fetch(`${wpBaseUrl}/posts`)
+      const response = await fetch(`${wpBaseUrl + wpAPI }/posts`)
       const data = await response.json()
       return data
     },
     async getSingle(id) {
-      const response = await fetch(`${wpBaseUrl}/posts/${id}`)
+      const response = await fetch(`${wpBaseUrl + wpAPI }/posts/${id}`)
       const data = await response.json()
       return data
     }
