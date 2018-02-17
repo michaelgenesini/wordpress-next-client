@@ -13,7 +13,7 @@
     "express": "^4.15.2",
     "isomorphic-fetch": "^2.2.1",
     "lru-cache": "^4.0.2",
-    "next": "^2.3.0-alpha1",
+    "next": "^5.0.0",
     "next-routes": "^1.0.24",
     "nprogress": "^0.2.0",
     "react": "^15.5.4",
